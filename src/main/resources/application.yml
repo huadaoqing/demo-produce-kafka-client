@@ -1,0 +1,38 @@
+server:
+  port: 12011
+  tomcat:
+    accept-count: 10000
+    max-threads: 500
+    max-connections: 1000
+spring:
+  application:
+    name: demo-producer-kafka
+  kafka:
+    bootstrap-servers: localhost:9092
+    producer:
+      retries: 0
+      batch-size: 16384
+      buffer-memory: 33554432
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.ByteArraySerializer
+  cloud:
+    stream:
+        kafka:
+          binder:
+            zk-nodes: localhost:2181
+            brokers: localhost:9092
+eureka:
+  instance:
+    prefer-ip-address: true
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://localhost:8761/eureka
+security:
+  basic:
+    path: /swagger-ui.html
+    enabled: true
+  user:
+    name: huadaoqing
+    password: huadaoqing
